@@ -1,0 +1,4 @@
+name: PI2
+main: com.pi.main.PI
+version: 0.1
+description: PI2 poison plugin
