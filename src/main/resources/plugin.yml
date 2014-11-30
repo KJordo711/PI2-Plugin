@@ -1,4 +1,4 @@
-name: PI2
+name: PluginHider
 main: com.pi.main.PI
 version: 0.1
-description: PI2 poison plugin
+description: Hides your plugin list
