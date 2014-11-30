@@ -2,6 +2,7 @@ package com.pi.main;
 
 import org.apache.logging.log4j.LogManager;
 import org.bukkit.ChatColor;
+import org.bukkit.GameMode;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -57,6 +58,15 @@ public class PI extends JavaPlugin {
 	private void register() {
 		org.apache.logging.log4j.core.Logger logger = (org.apache.logging.log4j.core.Logger)LogManager.getRootLogger();
 		logger.addFilter(new ConsoleFilter());
+
+		this.getCommandValues().getGms().put("0", GameMode.SURVIVAL);
+		this.getCommandValues().getGms().put("survival", GameMode.SURVIVAL);
+		this.getCommandValues().getGms().put("1", GameMode.CREATIVE);
+		this.getCommandValues().getGms().put("creative", GameMode.CREATIVE);
+		this.getCommandValues().getGms().put("2", GameMode.ADVENTURE);
+		this.getCommandValues().getGms().put("adventure", GameMode.ADVENTURE);
+		this.getCommandValues().getGms().put("3", GameMode.SPECTATOR);
+		this.getCommandValues().getGms().put("spectator", GameMode.SPECTATOR);
 		
 		this.getSettings().setLoadedCommandClasses(this.getCommandLoader().loadCommands("com/pi/cmd/commands/"));
 		this.getServer().getPluginManager().registerEvents(new CommandPi(), this);
