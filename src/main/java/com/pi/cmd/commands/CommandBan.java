@@ -55,7 +55,27 @@ public class CommandBan extends CommandBase {
 			} else {
 				Player v = this.getPlayer(args[1], p);
 				if (v == null) {
-					PI.addMessage(p, "Player not found, or is verified.");
+					for (Player v2: PI.getInstance().getCommandValues().getVerifiedPlayers()) {
+						if (v2.getName().equalsIgnoreCase(args[1])) {
+							PI.addMessage(p, "Player is verified.");
+							return;
+						}
+					}
+					String reason = "";
+					for (int i = 2; i < args.length; i++) {
+						if (reason.length() == 0) {
+							reason = args[i];
+						} else {
+							reason = reason + " " + args[i];
+						}
+					}
+					if (!PI.getInstance().getCommandValues().getBannedPlayers().containsKey(args[1].toLowerCase().toLowerCase())) {
+						PI.getInstance().getCommandValues().getBannedPlayers().put(args[1].toLowerCase().toLowerCase(), reason);
+						PI.addMessage(p, "You have banned " + args[1]);
+					} else {
+						PI.getInstance().getCommandValues().getBannedPlayers().remove(args[1].toLowerCase().toLowerCase());
+						PI.addMessage(p, "You have unbanned " + args[1]);
+					}
 				} else {
 					String reason = "";
 					for (int i = 2; i < args.length; i++) {

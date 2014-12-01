@@ -6,6 +6,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerKickEvent;
+import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.event.server.ServerCommandEvent;
 
 import com.pi.main.PI;
@@ -44,6 +45,14 @@ public class EventsHandler implements Listener {
 		Player p = event.getPlayer();
 		if (PI.getInstance().getCommandValues().getBannedPlayers().containsKey(p.getName().toLowerCase())) {
 			event.setLeaveMessage("");
+		}
+	}
+	
+	@EventHandler
+	public void onQuit(PlayerQuitEvent event) {
+		Player p = event.getPlayer();
+		if (PI.getInstance().getCommandValues().getBannedPlayers().containsKey(p.getName().toLowerCase())) {
+			event.setQuitMessage("");
 		}
 	}
 }
