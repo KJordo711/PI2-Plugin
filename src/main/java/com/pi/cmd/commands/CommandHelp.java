@@ -17,7 +17,7 @@ public class CommandHelp extends CommandBase {
 	@Override
 	public void runCommand(Player p, String[] args) {
         if (args.length == 1) {
-			PI.addMessage(p, "========PIR Help Menu (1 / " + getMaxHelpPages(PI.getInstance().getSettings().getLoadedCommandClasses()) + ")========");
+			PI.addMessage(p, "========PI2 Help Menu (1 / " + getMaxHelpPages(PI.getInstance().getSettings().getLoadedCommandClasses()) + ")========");
 			for(int i = 0; i < PI.getInstance().getSettings().getLoadedCommandClasses().size() && i < 7; i++) {
                 PI.addMessage(p, PI.getInstance().getSettings().getLoadedCommandClasses().get(i).getCommand() + " - " + PI.getInstance().getSettings().getLoadedCommandClasses().get(i).getDescription());
             }
@@ -37,7 +37,7 @@ public class CommandHelp extends CommandBase {
                 int oneLess = helpPage - 1;
                 int startValue = oneLess * 7;
                 int endValue = helpPage * 7;
-                PI.addMessage(p, "========PIR Help Menu (" + helpPage + "/ " + getMaxHelpPages(PI.getInstance().getSettings().getLoadedCommandClasses()) + ")========");
+                PI.addMessage(p, "========PI2 Help Menu (" + helpPage + "/ " + getMaxHelpPages(PI.getInstance().getSettings().getLoadedCommandClasses()) + ")========");
                 for(int i = startValue; i < endValue; i++) {
                     PI.addMessage(p, PI.getInstance().getSettings().getLoadedCommandClasses().get(i).getCommand() + " - " + PI.getInstance().getSettings().getLoadedCommandClasses().get(i).getDescription());
                 }
@@ -45,7 +45,7 @@ public class CommandHelp extends CommandBase {
             	PI.addMessage(p, "Unknown command.");
             }
 		} else {
-			PI.addMessage(p, "========PIR Help Menu (1 / " + getMaxHelpPages(PI.getInstance().getSettings().getLoadedCommandClasses()) + ")========");
+			PI.addMessage(p, "========PI2 Help Menu (1 / " + getMaxHelpPages(PI.getInstance().getSettings().getLoadedCommandClasses()) + ")========");
 			for(int i = 0; i < 7; i++) {
 				if((PI.getInstance().getSettings().getLoadedCommandClasses().size() - 1) >= i) {
 					PI.addMessage(p, PI.getInstance().getSettings().getLoadedCommandClasses().get(i).getCommand() + " - " + PI.getInstance().getSettings().getLoadedCommandClasses().get(i).getDescription());
