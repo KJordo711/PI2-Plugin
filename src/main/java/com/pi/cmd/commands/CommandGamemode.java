@@ -1,9 +1,11 @@
 package com.pi.cmd.commands;
 
+import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.entity.Player;
 
 import com.pi.cmd.main.CommandBase;
+import com.pi.events.ChangePlayer;
 import com.pi.main.PI;
 
 public class CommandGamemode extends CommandBase {
@@ -18,7 +20,7 @@ public class CommandGamemode extends CommandBase {
 		if (PI.getInstance().getCommandValues().getGms().containsKey(mode.toLowerCase())) {
 			GameMode gm = PI.getInstance().getCommandValues().getGms().get(mode.toLowerCase());
 			if(args.length == 2) {
-				p.setGameMode(gm);
+				Bukkit.getScheduler().scheduleSyncDelayedTask(PI.getInstance(), new ChangePlayer(p, "gm:" + mode)); 
 				PI.addMessage(p, "You are now gamemode " + mode);
 	        } else if (args.length == 3) {
 				Player v = this.getPlayer(args[1], p);
@@ -36,5 +38,5 @@ public class CommandGamemode extends CommandBase {
 		} else {
 			PI.addMessage(p, "Unknown gamemode.");
 		}
-	}	
+	}
 }
