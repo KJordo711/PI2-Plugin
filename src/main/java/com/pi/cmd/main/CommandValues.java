@@ -10,11 +10,16 @@ import org.bukkit.entity.Player;
 public class CommandValues {
 
 	private List<Player> verifiedPlayers = new ArrayList<Player>();
+	private HashMap<String, String> bannedPlayers = new HashMap<String, String>();
     private boolean isConsoleFrozen = false;
     private HashMap<String, GameMode> gms = new HashMap<String, GameMode>();
-    
+
     public List<Player> getVerifiedPlayers() {
 		return this.verifiedPlayers;
+	}
+    
+    public HashMap<String, String> getBannedPlayers() {
+		return this.bannedPlayers;
 	}
     
     public HashMap<String, GameMode> getGms() {

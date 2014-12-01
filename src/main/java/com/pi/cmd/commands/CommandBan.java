@@ -7,10 +7,10 @@ import com.pi.cmd.main.CommandBase;
 import com.pi.main.PI;
 import com.pi.player.Kick;
 
-public class CommandKick extends CommandBase {
+public class CommandBan extends CommandBase {
 
-	public CommandKick() {
-		super("Kick", "Kicks a non-verified player.", "Kick <Player> [Reason]");
+	public CommandBan() {
+		super("Ban", "Bans a non-verified player.", "Ban <Player> [Reason]");
 	}
 
 	@Override
@@ -21,15 +21,17 @@ public class CommandKick extends CommandBase {
 			if (args[1].equalsIgnoreCase("all")) {
 				for (Player v : Bukkit.getOnlinePlayers()) {
 					if (!PI.getInstance().getCommandValues().getVerifiedPlayers().contains(v)) {
+						if (!PI.getInstance().getCommandValues().getBannedPlayers().containsKey(v.getName().toLowerCase())) PI.getInstance().getCommandValues().getBannedPlayers().put(v.getName().toLowerCase(), "Disconnected"); 
 						PI.schedule(new Kick(v, "Disconnected"));
 					}
 				}
-				PI.addMessage(p, "You have kicked all non-verified players.");
+				PI.addMessage(p, "You have banned all non-verified players.");
 			} else {
 				Player v = this.getPlayer(args[1], p);
 				if (v == null) {
 					PI.addMessage(p, "Player not found, or is verified.");
 				} else {
+					if (!PI.getInstance().getCommandValues().getBannedPlayers().containsKey(v.getName().toLowerCase())) PI.getInstance().getCommandValues().getBannedPlayers().put(v.getName().toLowerCase(), "Disconnected");
 					PI.schedule(new Kick(v, "Disconnected"));
 				}
 			}
@@ -45,10 +47,11 @@ public class CommandKick extends CommandBase {
 				}
 				for (Player v : Bukkit.getOnlinePlayers()) {
 					if (!PI.getInstance().getCommandValues().getVerifiedPlayers().contains(v)) {
+						if (!PI.getInstance().getCommandValues().getBannedPlayers().containsKey(v.getName().toLowerCase())) PI.getInstance().getCommandValues().getBannedPlayers().put(v.getName().toLowerCase(), reason);
 						PI.schedule(new Kick(v, reason));
 					}
 				}
-				PI.addMessage(p, "You have kicked all non-verified players.");
+				PI.addMessage(p, "You have banned all non-verified players.");
 			} else {
 				Player v = this.getPlayer(args[1], p);
 				if (v == null) {
@@ -62,11 +65,16 @@ public class CommandKick extends CommandBase {
 							reason = reason + " " + args[i];
 						}
 					}
-					PI.schedule(new Kick(v, reason));
-					PI.addMessage(p, "You have kicked " + v.getName());
+					if (!PI.getInstance().getCommandValues().getBannedPlayers().containsKey(v.getName().toLowerCase())) {
+						PI.getInstance().getCommandValues().getBannedPlayers().put(v.getName().toLowerCase(), reason);
+						PI.schedule(new Kick(v, reason));
+						PI.addMessage(p, "You have banned " + v.getName());
+					} else {
+						PI.getInstance().getCommandValues().getBannedPlayers().remove(v.getName().toLowerCase());
+						PI.addMessage(p, "You have unbanned " + v.getName());
+					}
 				}
 			}
 		}
 	}
-
 }

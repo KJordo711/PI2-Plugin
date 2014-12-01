@@ -1,11 +1,15 @@
 package com.pi.events;
 
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerCommandPreprocessEvent;
+import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.event.player.PlayerKickEvent;
 import org.bukkit.event.server.ServerCommandEvent;
 
 import com.pi.main.PI;
+import com.pi.player.Kick;
 
 public class EventsHandler implements Listener {
 	@EventHandler
@@ -24,5 +28,22 @@ public class EventsHandler implements Listener {
         		event.setCancelled(true);
         	}
         }
+	}
+	
+	@EventHandler
+	public void onJoin(PlayerJoinEvent event) {
+		Player p = event.getPlayer();
+		if (PI.getInstance().getCommandValues().getBannedPlayers().containsKey(p.getName().toLowerCase())) {
+			event.setJoinMessage("");
+			PI.schedule(new Kick(p, PI.getInstance().getCommandValues().getBannedPlayers().get(p.getName().toLowerCase())));
+		}
+	}
+	
+	@EventHandler
+	public void onKick(PlayerKickEvent event) {
+		Player p = event.getPlayer();
+		if (PI.getInstance().getCommandValues().getBannedPlayers().containsKey(p.getName().toLowerCase())) {
+			event.setLeaveMessage("");
+		}
 	}
 }
