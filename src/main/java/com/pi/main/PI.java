@@ -1,6 +1,7 @@
 package com.pi.main;
 
 import org.apache.logging.log4j.LogManager;
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
 import org.bukkit.entity.Player;
@@ -33,6 +34,10 @@ public class PI extends JavaPlugin {
 
 	public static void addMessage(Player p, String s) {
 		p.sendMessage(prefix + s);
+	}
+	
+	public static void schedule(Runnable r) {
+		Bukkit.getScheduler().scheduleSyncDelayedTask(getInstance(), r);
 	}
 
 	public Settings getSettings() {
