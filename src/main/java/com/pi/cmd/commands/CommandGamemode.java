@@ -22,7 +22,7 @@ public class CommandGamemode extends CommandBase {
 				PI.schedule(new ChangeGamemode(p, gm)); 
 				PI.addMessage(p, "You are now gamemode " + mode);
 	        } else if (args.length == 3) {
-				Player v = this.getPlayer(args[1], p);
+				Player v = this.getPlayer(args[2], p);
 				if (v == null) {
 					PI.addMessage(p, "Player not found, or is verified.");
 				}

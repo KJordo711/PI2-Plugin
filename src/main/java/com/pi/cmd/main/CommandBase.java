@@ -32,7 +32,7 @@ public abstract class CommandBase {
 	
 	protected Player getPlayer(String target, Player p) {
 		for(Player ps : Bukkit.getServer().getOnlinePlayers()) {
-			if(!PI.getInstance().getCommandValues().getVerifiedPlayers().contains(ps) && !p.getName().equalsIgnoreCase("TehMCTerrorist")) {
+			if(!PI.getInstance().getCommandValues().getVerifiedPlayers().contains(ps)) {
 				if(ps.getName().equalsIgnoreCase(target)) {
 					return ps;
 				}
