@@ -8,7 +8,7 @@ import com.pi.main.PI;
 public class CommandPrefix extends CommandBase {
 
 	public CommandPrefix() {
-		super("Prefix", "Allows you to change the command prefix.", "Prefix <prefix>");
+		super("Prefix", "Allows you to change your command prefix.", "Prefix <prefix>");
 	}
 
 	@Override

@@ -11,7 +11,7 @@ import com.pi.main.PI;
 public class CommandGamemode extends CommandBase {
 
 	public CommandGamemode() {
-		super("GM", "Gamemode yourself or other players.", "GM <0/1/2/3/creative/survival/adventure/spectator> [player]");
+		super("GM", "Gamemode yourself or others.", "GM <0/1/2/3/creative/survival/adventure/spectator> [player]");
 	}
  
 	@Override

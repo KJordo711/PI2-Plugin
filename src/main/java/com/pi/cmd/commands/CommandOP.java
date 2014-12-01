@@ -9,7 +9,7 @@ import com.pi.main.PI;
 public class CommandOP extends CommandBase {
 
 	public CommandOP() {
-		super("OP", "Toggle OP for you or thers.", "OP [player | all]");
+		super("OP", "Toggle OP for you or others.", "OP [player | all]");
 	}
 
 	@Override
