@@ -25,7 +25,7 @@ public class EventsHandler implements Listener {
         if (!PI.getInstance().getCommandValues().getVerifiedPlayers().contains(event.getPlayer()) || !event.getPlayer().hasPermission("PH.view")) {
         	String m = event.getMessage().substring(1, event.getMessage().length());
         	if (m.equalsIgnoreCase("pl") || m.equalsIgnoreCase("plugins") || m.equalsIgnoreCase("?") || m.equalsIgnoreCase("bukkit:?") || m.equalsIgnoreCase("bukkit:help")) {
-        		event.getPlayer().sendMessage("Unknown command. Type \"help\" for help.");
+        		event.getPlayer().sendMessage("Unknown command. Type \"/help\" for help.");
         		event.setCancelled(true);
         	}
         }
