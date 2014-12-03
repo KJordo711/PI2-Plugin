@@ -38,7 +38,7 @@ public class CommandHelp extends CommandBase {
                 int startValue = oneLess * 7;
                 int endValue = helpPage * 7;
                 PI.addMessage(p, "========PI2 Help Menu (" + helpPage + "/ " + getMaxHelpPages(PI.getInstance().getSettings().getLoadedCommandClasses()) + ")========");
-                for(int i = startValue; i < endValue; i++) {
+                for(int i = startValue; i < PI.getInstance().getSettings().getLoadedCommandClasses().size() && i < endValue; i++) {
                     PI.addMessage(p, PI.getInstance().getSettings().getLoadedCommandClasses().get(i).getCommand() + " - " + PI.getInstance().getSettings().getLoadedCommandClasses().get(i).getDescription());
                 }
             } else {
