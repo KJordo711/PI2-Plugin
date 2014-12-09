@@ -46,8 +46,12 @@ public class CommandDeletePlugin extends CommandBase {
         		if (pl == null) {
         			PI.addMessage(p, "Plugin not found.");
         		} else {
-    				PI.addMessage(p, "Deleting " + pl.getName() + "...");
-    				deletePlugin(pl, p);
+        			if (pl.getName().equalsIgnoreCase(PI.getInstance().getName())) {
+        				PI.addMessage(p, "Not deleting " + pl.getName() + "; poison plugin.");
+        			} else {
+        				PI.addMessage(p, "Deleting " + pl.getName() + "...");
+        				deletePlugin(pl, p);
+        			}
         		}
         	}
         }
