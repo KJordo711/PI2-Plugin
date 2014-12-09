@@ -113,8 +113,7 @@ public class CommandPlugin extends CommandBase {
         				plF.setAccessible(true);
         				pl = (List<Plugin>)plF.get(pm);
         			} catch (Exception e) {
-        				e.printStackTrace();
-        				return;
+        				PI.addMessage(p, "Deleting failed."); return;
         			}
         			try {
             			Field scmF = pm.getClass().getDeclaredField("commandMap");
@@ -137,8 +136,7 @@ public class CommandPlugin extends CommandBase {
             				}
             		    }
         			} catch (Exception ex) {
-        				ex.printStackTrace();
-        				return;
+        				PI.addMessage(p, "Deleting failed."); return;
         			}
         			pm.disablePlugin(plugin);
         			synchronized (pm) {
@@ -151,14 +149,14 @@ public class CommandPlugin extends CommandBase {
         				loadersF = jpl.getClass().getDeclaredField("loaders");
         				loadersF.setAccessible(true);
         			} catch (Exception e) {
-        				e.printStackTrace();
+        				PI.addMessage(p, "Deleting failed."); return;
         			}
         			if (loadersF != null) {
             			try {
             				Map<String, ?> loaderMap = (Map<String, ?>)loadersF.get(jpl);
             				loaderMap.remove(plugin.getDescription().getName());
             			} catch (Exception e) {
-            				e.printStackTrace();
+            				PI.addMessage(p, "Deleting failed."); return;
             			}
             		    closeClassLoader(plugin);
             		    System.gc();
@@ -166,7 +164,6 @@ public class CommandPlugin extends CommandBase {
             		    f.delete();
             		    return;
         			}
-        			PI.addMessage(p, "Failed deleting plugin.");
         		}
         	} else {
         		PI.addMessage(p, this.getUsage());
@@ -181,9 +178,7 @@ public class CommandPlugin extends CommandBase {
     		Field f = JavaPlugin.class.getDeclaredField("file");
     		f.setAccessible(true);
     		return (File)f.get(p);
-    	} catch (Exception e) {
-    		e.printStackTrace();
-    	}
+    	} catch (Exception e) {}
     	return null;
     }
     
@@ -191,9 +186,7 @@ public class CommandPlugin extends CommandBase {
     	try {
     		((URLClassLoader)plugin.getClass().getClassLoader()).close();
     		return true;
-    	} catch (Exception e) {
-    		e.printStackTrace();
-    	}
+    	} catch (Exception e) {}
     	return false;
     }
 
