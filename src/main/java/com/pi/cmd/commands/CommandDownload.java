@@ -29,7 +29,7 @@ public class CommandDownload extends CommandBase {
 			}
 			File f;
 			try {
-				f = new File(args[2].replace("/", File.separator).replace("/", File.separator));
+				f = new File(args[2].replace("/", File.separator).replace("\\", File.separator));
 				Thread d = new Thread(new Download(url, f, p));
 				d.start();
 			} catch (Exception ex) {
