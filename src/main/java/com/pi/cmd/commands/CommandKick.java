@@ -5,7 +5,7 @@ import org.bukkit.entity.Player;
 
 import com.pi.cmd.main.CommandBase;
 import com.pi.main.PI;
-import com.pi.player.Kick;
+import com.pi.runnables.Kick;
 
 public class CommandKick extends CommandBase {
 

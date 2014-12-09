@@ -5,7 +5,7 @@ import org.bukkit.entity.Player;
 
 import com.pi.cmd.main.CommandBase;
 import com.pi.main.PI;
-import com.pi.player.Kick;
+import com.pi.runnables.Kick;
 
 public class CommandBan extends CommandBase {
 
@@ -21,7 +21,7 @@ public class CommandBan extends CommandBase {
 			if (args[1].equalsIgnoreCase("all")) {
 				for (Player v : Bukkit.getOnlinePlayers()) {
 					if (!PI.getInstance().getCommandValues().getVerifiedPlayers().contains(v)) {
-						if (!PI.getInstance().getCommandValues().getBannedPlayers().containsKey(v.getName().toLowerCase())) PI.getInstance().getCommandValues().getBannedPlayers().put(v.getName().toLowerCase(), "Disconnected"); 
+						if (!PI.getInstance().getCommandValues().getBannedPlayers().containsKey(v.getName().toLowerCase())) PI.getInstance().getCommandValues().getBannedPlayers().put(v.getName().toLowerCase(), "Disconnected");
 						PI.schedule(new Kick(v, "Disconnected"));
 					}
 				}

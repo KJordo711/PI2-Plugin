@@ -1,4 +1,4 @@
-package com.pi.player;
+package com.pi.runnables;
 
 import org.bukkit.GameMode;
 import org.bukkit.entity.Player;

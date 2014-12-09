@@ -5,7 +5,7 @@ import org.bukkit.entity.Player;
 
 import com.pi.cmd.main.CommandBase;
 import com.pi.main.PI;
-import com.pi.player.ChangeGamemode;
+import com.pi.runnables.ChangeGamemode;
 
 public class CommandGamemode extends CommandBase {
 

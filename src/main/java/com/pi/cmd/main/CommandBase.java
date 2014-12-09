@@ -5,7 +5,7 @@ import org.bukkit.entity.Player;
 
 import com.pi.main.PI;
 
-public abstract class CommandBase {
+public class CommandBase {
 	private String command;
 	private String description;
 	private String usage;
@@ -15,8 +15,6 @@ public abstract class CommandBase {
 		this.description = description;
 		this.usage = usage;
 	}
-	
-	public abstract void runCommand(Player p, String[] args);
 	
 	public String getCommand() {
 		return this.command;
@@ -46,4 +44,6 @@ public abstract class CommandBase {
 	protected CommandValues getCommandValues() {
 		return PI.getInstance().getCommandValues();
 	}
+
+	public void runCommand(Player p, String[] args) {}
 }

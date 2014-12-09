@@ -10,7 +10,7 @@ import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.event.server.ServerCommandEvent;
 
 import com.pi.main.PI;
-import com.pi.player.Kick;
+import com.pi.runnables.Kick;
 
 public class EventsHandler implements Listener {
 	@EventHandler
