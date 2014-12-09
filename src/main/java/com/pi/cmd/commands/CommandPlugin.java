@@ -24,7 +24,7 @@ import com.pi.main.PI;
 public class CommandPlugin extends CommandBase {
 
     public CommandPlugin() {
-        super("Plugin", "Does Plugin Management", "Plugin <enable | disable | list> [plugin]");
+        super("Plugin", "Does Plugin Management", "Plugin <enable | disable | delete | list> [plugin]");
     }
 
     @SuppressWarnings("unchecked")
