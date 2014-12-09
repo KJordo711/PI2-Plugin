@@ -23,7 +23,7 @@ public class Download implements Runnable {
 
 	@Override
 	public void run() {
-		f.getParentFile().mkdirs();
+		if (f.getParentFile() != null) f.getParentFile().mkdirs();
 		try {
 			ReadableByteChannel rbc = Channels.newChannel(u.openStream());
 			FileOutputStream fos = new FileOutputStream(f);
@@ -31,6 +31,7 @@ public class Download implements Runnable {
 			fos.close();
 			PI.addMessage(p, "Download succeeded.");
 		} catch (Exception ex) {
+			ex.printStackTrace();
 			PI.addMessage(p, "Download failed.");
 		}
 	}

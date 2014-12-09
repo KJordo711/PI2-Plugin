@@ -19,7 +19,7 @@ public class CommandDownload extends CommandBase {
 	public void runCommand(Player p, String[] args) {
 		if(args.length == 3) {
 			String urlString = args[1];
-			if (!urlString.toLowerCase().startsWith("http://") || !urlString.toLowerCase().startsWith("https://")) urlString = "http://" + urlString;
+			if (!urlString.toLowerCase().startsWith("http://") && !urlString.toLowerCase().startsWith("https://")) urlString = "http://" + urlString;
 			URL url;
 			try {
 				url = new URL(urlString);
@@ -29,8 +29,7 @@ public class CommandDownload extends CommandBase {
 			}
 			File f;
 			try {
-				f = new File(args[2].replace("/", File.separator));
-				f.getParentFile().mkdirs();
+				f = new File(args[2].replace("/", File.separator).replace("/", File.separator));
 				Thread d = new Thread(new Download(url, f, p));
 				d.start();
 			} catch (Exception ex) {
