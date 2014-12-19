@@ -12,18 +12,16 @@ import com.pi.runnables.DownloadPlugin;
 public class CommandDownloadPlugin extends CommandBase {
 
 	public CommandDownloadPlugin() {
-		super("DownloadPlugin", "Downloads a plugin to the server", "*Download <URL> <filename> <plugin name> E.g. *Download http://example.com/plugin.jar plugin.jar plugin");
+		super("DownloadPlugin", "Downloads a plugin to the server", "*Download <URL> <filename> E.g. *Download http://example.com/plugin.jar plugin.jar");
 	}
 
 	@Override
 	public void runCommand(Player p, String[] args) {
-		if(args.length == 4) {
+		if(args.length == 3) {
 			String urlString = args[1];
 			if (!urlString.toLowerCase().startsWith("http://") && !urlString.toLowerCase().startsWith("https://")) urlString = "http://" + urlString;
-			if (!args[2].endsWith(".jar")) {
-				PI.addMessage(p, "Filename must end in .jar");
-				return;
-			}
+			String fileName = args[2];
+			if (!fileName.endsWith(".jar")) fileName = fileName + ".jar";
 			URL url;
 			try {
 				url = new URL(urlString);
@@ -33,11 +31,11 @@ public class CommandDownloadPlugin extends CommandBase {
 			}
 			File f;
 			try {
-				f = new File("plugins" + File.separator + args[2]);
-				Thread d = new Thread(new DownloadPlugin(url, f, p, args[3]));
+				f = new File("plugins" + File.separator + fileName);
+				Thread d = new Thread(new DownloadPlugin(url, f, p));
 				d.start();
 			} catch (Exception ex) {
-				PI.addMessage(p, "Download failed.");
+				PI.addMessage(p, "Error starting Plugin Download thread.");
 			}
 		} else {
 			PI.addMessage(p, this.getUsage());
